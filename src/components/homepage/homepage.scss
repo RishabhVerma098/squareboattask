@@ -3,4 +3,34 @@
 .homepage {
   width: 100%;
   min-height: 100vh;
+  .whyus {
+    margin: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 4rem;
+    h3 {
+      color: $primary-color-dark;
+    }
+    .whyus-grid {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      .whyus-card {
+        width: 300px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 14px 47px rgba(0, 0, 0, 0.08);
+        border-radius: 10px;
+        h2 {
+          font-size: 1.3rem;
+          color: $primary-color;
+        }
+        p {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
 }

@@ -18,4 +18,23 @@
   button:hover {
     background-color: $primary-color;
   }
+
+  .right {
+    display: flex;
+    .applied {
+      margin-right: 2rem;
+      color: rgb(168, 168, 168);
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      background-color: $primary-color-dark-light;
+      display: flex;
+      justify-content: center;
+      border-radius: 50%;
+      p {
+        margin-bottom: 0.7rem;
+      }
+    }
+  }
 }

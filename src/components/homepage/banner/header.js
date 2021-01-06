@@ -5,6 +5,12 @@ function Header() {
     <div className="header">
       <h1>MyJobs</h1>
       <button>Login/Signup</button>
+      {/* <div className="right">
+        <p className="applied">Applied Jobs</p>
+        <div className="avatar">
+          <p>P</p>
+        </div>
+      </div> */}
     </div>
   );
 }
