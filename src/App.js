@@ -1,8 +1,9 @@
-import react from "react";
+import "./App.scss";
+import Homepage from "./components/homepage/homepage";
 function App() {
   return (
     <div className="App">
-      <h1>hello world</h1>
+      <Homepage />
     </div>
   );
 }

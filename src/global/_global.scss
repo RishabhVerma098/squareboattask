@@ -1,0 +1,34 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+$primary-color: #43afff;
+$primary-color-dark: #303f60;
+$primary-color-dark-light: #4d618e;
+$secondary-color: #edf6ff;
+$secondary-color-grey: #a9afbc;
+$secondary-color-dark: #d9efff;
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  list-style: none;
+}
+@mixin button-style($val) {
+  padding: 0.7rem 1.5rem 0.7rem 1.5rem;
+  background-color: $primary-color;
+  border-radius: 5px;
+  height: min-content;
+  border: none;
+  @if $val == 1 {
+    background-color: $primary-color-dark;
+    border: 1px solid $primary-color;
+  }
+  color: white;
+  font-weight: 600;
+}
