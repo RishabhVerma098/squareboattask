@@ -31,4 +31,7 @@ ul {
   }
   color: white;
   font-weight: 600;
+  &:hover {
+    cursor: pointer;
+  }
 }

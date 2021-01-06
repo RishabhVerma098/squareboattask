@@ -1,0 +1,44 @@
+@import "../../global/global";
+@import "./auth.scss";
+form {
+  display: flex;
+  flex-direction: column;
+  label {
+    @include label-style;
+  }
+
+  input {
+    @include input-style;
+  }
+  button {
+    @include button-style(0);
+    width: 150px;
+    align-self: center;
+    margin-top: 2rem;
+  }
+
+  .role {
+    margin-top: -1rem;
+    .candi {
+      margin-left: 1rem;
+    }
+  }
+
+  .passwords-row {
+    margin-top: 1rem;
+    display: flex;
+    width: 100%;
+    .password {
+      input {
+        padding: 1rem 1rem 1rem 1rem;
+      }
+    }
+    .confirm-password {
+      margin-left: 2.5rem;
+    }
+  }
+}
+p {
+  @include bottom-text;
+  margin-top: 1rem;
+}

@@ -1,0 +1,58 @@
+@import "../../global/global";
+.auth {
+  width: 100%;
+  min-height: 100vh;
+  .background {
+    height: 50vh;
+    width: 100%;
+    background-color: $primary-color-dark;
+  }
+  .form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 30px 175px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    h2 {
+      color: $primary-color-dark;
+    }
+  }
+}
+
+@mixin label-style {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: $primary-color-dark;
+  font-weight: 500;
+}
+
+@mixin input-style {
+  margin-top: 0.5rem;
+  padding: 1rem 2rem 1rem 2rem;
+  border-radius: 5px;
+  border: 1px solid rgb(206, 206, 206);
+  color: $primary-color-dark;
+  font-weight: 500;
+  &:focus {
+    border: 1px solid $primary-color;
+    outline: none;
+  }
+}
+
+@mixin bottom-text {
+  align-self: center;
+  margin-top: 3rem;
+  color: $primary-color-dark;
+  span {
+    color: $primary-color;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

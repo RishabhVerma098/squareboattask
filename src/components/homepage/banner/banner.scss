@@ -2,31 +2,10 @@
 
 .banner {
   width: 100%;
-  height: 70vh;
+  height: 50vh;
   background-color: $primary-color-dark;
-  display: flex;
-  flex-direction: column;
   position: relative;
-  .header {
-    width: 80%;
-    height: 60px;
-    border-bottom: 2px solid $primary-color-dark-light;
-    display: flex;
-    justify-content: space-between;
-    align-self: center;
-    margin-top: 20px;
-    padding-bottom: 1rem;
-    h1 {
-      color: white;
-    }
-    button {
-      @include button-style(1);
-    }
-    button:hover {
-      cursor: pointer;
-      background-color: $primary-color;
-    }
-  }
+
   .text {
     position: absolute;
     top: 35%;

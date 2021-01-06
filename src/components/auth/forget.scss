@@ -1,0 +1,23 @@
+@import "../../global/global";
+@import "./auth.scss";
+form {
+  display: flex;
+  flex-direction: column;
+  label {
+    @include label-style;
+  }
+  p {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: $primary-color-dark;
+  }
+  input {
+    @include input-style;
+  }
+  button {
+    @include button-style(0);
+    width: 150px;
+    align-self: center;
+    margin-top: 2rem;
+  }
+}
