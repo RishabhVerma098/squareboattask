@@ -1,0 +1,48 @@
+@import "../../global/global";
+@import "../auth/auth.scss";
+.postajob {
+  .background {
+    height: 40vh;
+    background-color: $primary-color-dark;
+  }
+  .form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 30px 175px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    h2 {
+      color: $primary-color-dark;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      label {
+        @include label-style;
+      }
+
+      input {
+        @include input-style;
+      }
+      textarea {
+        @include input-style;
+        height: 100px;
+      }
+      button {
+        @include button-style(0);
+        width: 150px;
+        align-self: center;
+        margin-top: 2rem;
+      }
+    }
+    p {
+      @include bottom-text;
+    }
+  }
+}
