@@ -1,6 +1,6 @@
 import React from "react";
 import "./auth.scss";
-//import Login from "./login";
+import Login from "./login";
 import Signup from "./signup";
 //import Forget from "./forget";
 //import Reset from "./reset";
@@ -12,7 +12,7 @@ function Auth() {
         <Header />
       </div>
       <div className="form">
-        <Signup />
+        <Login />
       </div>
     </div>
   );

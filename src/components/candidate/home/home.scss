@@ -46,7 +46,7 @@
       grid-template-columns: 1fr 1fr 1fr 1fr;
       gap: 2rem;
       .job-card {
-        height: 170px;
+        height: 150px;
         background-color: white;
         box-shadow: 0 14px 47px rgba(0, 0, 0, 0.08);
         padding: 20px;
@@ -58,9 +58,11 @@
           height: 20%;
         }
         p {
+          width: 100%;
           color: $primary-color-dark;
           font-size: 0.8rem;
           height: 60%;
+          overflow: hidden;
         }
         .bottom-card {
           height: 20%;
