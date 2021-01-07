@@ -16,6 +16,11 @@ form {
     align-self: center;
     margin-top: 2rem;
   }
+  .error {
+    color: red;
+    font-size: 0.7rem;
+    margin-top: 0.2rem;
+  }
 }
 p {
   @include bottom-text;
