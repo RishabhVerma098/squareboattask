@@ -3,6 +3,7 @@ import "./header.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { showAppliedJobs } from "../../../store/actions";
 import { Link, useHistory } from "react-router-dom";
+import dropdown from "./drop-down-arrow.png";
 function Header() {
   const [show, setShow] = useState(false);
   const history = useHistory();
@@ -38,9 +39,18 @@ function Header() {
           <div className="avatar">
             <p>{localStorage.getItem("name")[0].toUpperCase()}</p>
           </div>
-          <p style={{ color: "red" }} onClick={() => setShow(!show)}>
-            down
-          </p>
+
+          <img
+            style={{
+              width: "20px",
+              height: "20px",
+              marginLeft: "1rem",
+              marginTop: "0.7rem",
+            }}
+            src={dropdown}
+            onClick={() => setShow(!show)}
+            alt="^"
+          ></img>
           {show ? (
             <div style={{ position: "absolute", top: "110%", right: "0%" }}>
               <button
