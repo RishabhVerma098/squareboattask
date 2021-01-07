@@ -3,7 +3,7 @@ import "./signup.scss";
 import { registerUser } from "../../store/actions";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
-
+import { Link } from "react-router-dom";
 function Signup() {
   const [role, setRole] = useState(1);
   const dispatch = useDispatch();
@@ -162,7 +162,10 @@ function Signup() {
         <button type="submit">Login</button>
       </form>
       <p>
-        Have an account ? <span>login</span>
+        Have an account ?{" "}
+        <Link to="/auth/login">
+          <span>login</span>
+        </Link>
       </p>
     </>
   );

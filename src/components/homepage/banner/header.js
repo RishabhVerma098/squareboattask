@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./header.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { showAppliedJobs } from "../../../store/actions";
+import { Link } from "react-router-dom";
 function Header() {
   const [show, setShow] = useState(false);
 
@@ -11,10 +12,14 @@ function Header() {
 
   return (
     <div className="header">
-      <h1>MyJobs</h1>
+      <Link to="/">
+        <h1>MyJobs</h1>
+      </Link>
 
       {localStorage.getItem("token") == null ? (
-        <button>Login/Signup</button>
+        <Link to="/auth/login">
+          <button>Login/Signup</button>
+        </Link>
       ) : (
         <div className="right">
           <p

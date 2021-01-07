@@ -3,6 +3,7 @@ import "./login.scss";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../store/actions";
 import { useFormik } from "formik";
+import { Link } from "react-router-dom";
 function Login() {
   const dispatch = useDispatch();
 
@@ -73,7 +74,10 @@ function Login() {
         </button>
       </form>
       <p>
-        New to MyJobs ? <span>Create account</span>
+        New to MyJobs ?{" "}
+        <Link to="/auth/signup">
+          <span>Create Account</span>
+        </Link>
       </p>
     </>
   );
