@@ -12,6 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Pagination from "react-js-pagination";
+import locimg from "./placeholder.png";
 function Home() {
   const dispatch = useDispatch();
   var token = localStorage.getItem("token");
@@ -98,7 +99,20 @@ function Home() {
                     <h2>{job.title}</h2>
                     <p>{job.description}</p>
                     <div className="bottom-card">
-                      <p>{job.location}</p>
+                      <p>
+                        <span>
+                          <img
+                            style={{
+                              width: "12px",
+                              height: "12px",
+                              marginRight: "0.5rem",
+                            }}
+                            src={locimg}
+                            alt=""
+                          ></img>
+                        </span>
+                        {job.location}
+                      </p>
                       {showApplied ? (
                         <button
                           disabled={true}
@@ -123,7 +137,20 @@ function Home() {
                   <h2>{job.title}</h2>
                   <p>{job.description}</p>
                   <div className="bottom-card">
-                    <p>{job.location}</p>
+                    <p>
+                      <span>
+                        <img
+                          style={{
+                            width: "12px",
+                            height: "12px",
+                            marginRight: "0.5rem",
+                          }}
+                          src={locimg}
+                          alt=""
+                        ></img>
+                      </span>
+                      {job.location}
+                    </p>
                   </div>
                 </div>
               );
@@ -133,24 +160,22 @@ function Home() {
       </div>
       {token !== null && localStorage.getItem("useRole") === "0" ? null : (
         <div className="page">
-          {candidatejobs.metadata !== undefined ? (
-            <Pagination
-              activePage={activePage}
-              itemsCountPerPage={
-                token === null
-                  ? allJobs?.metadata?.limit
-                  : candidatejobs?.metadata?.limit
-              }
-              totalItemsCount={
-                token === null
-                  ? allJobs?.metadata?.count
-                  : candidatejobs?.metadata?.count
-              }
-              pageRangeDisplayed={5}
-              onChange={handlePageChange}
-              innerClass="pager"
-            />
-          ) : null}
+          <Pagination
+            activePage={activePage}
+            itemsCountPerPage={
+              token === null
+                ? allJobs?.metadata?.limit
+                : candidatejobs?.metadata?.limit
+            }
+            totalItemsCount={
+              token === null
+                ? allJobs?.metadata?.count
+                : candidatejobs?.metadata?.count
+            }
+            pageRangeDisplayed={5}
+            onChange={handlePageChange}
+            innerClass="pager"
+          />
         </div>
       )}
     </div>

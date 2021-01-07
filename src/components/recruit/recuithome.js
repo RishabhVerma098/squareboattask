@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import { fetchOneJobCandi } from "../../store/actions";
 import Pagination from "react-js-pagination";
+import locimg from "../candidate/home/placeholder.png";
 import "./recuit.scss";
 const customStyles = {
   content: {
@@ -78,7 +79,21 @@ function Recruit() {
                 <h2>{job.title}</h2>
                 <p>{job.description}</p>
                 <div className="bottom-card">
-                  <p>{job.location}</p>
+                  <p>
+                    {" "}
+                    <span>
+                      <img
+                        style={{
+                          width: "12px",
+                          height: "12px",
+                          marginRight: "0.5rem",
+                        }}
+                        src={locimg}
+                        alt=""
+                      ></img>
+                    </span>
+                    {job.location}
+                  </p>
                   <button onClick={() => fetchCandiJobs(job.id)}>View</button>
                 </div>
               </div>
