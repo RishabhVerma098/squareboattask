@@ -64,7 +64,7 @@ function Recruit() {
 
   return (
     <>
-      {rjobs.length === 0 ? (
+      {Object.keys(rjobs).length === 0 ? (
         <div className="nojobs">
           <p>No jobs posted by you</p>
           <Link to="/postjob">
@@ -134,16 +134,19 @@ function Recruit() {
           })}
         </div>
       </Modal>
-      <div className="page">
-        <Pagination
-          activePage={activePage}
-          itemsCountPerPage={rjobs?.metadata?.limit}
-          totalItemsCount={rjobs?.metadata?.count}
-          pageRangeDisplayed={5}
-          onChange={handlePageChange}
-          innerClass="pager"
-        />
-      </div>
+
+      {rjobs?.metadata?.limit > 20 ? (
+        <div className="page">
+          <Pagination
+            activePage={activePage}
+            itemsCountPerPage={rjobs?.metadata?.limit}
+            totalItemsCount={rjobs?.metadata?.count}
+            pageRangeDisplayed={5}
+            onChange={handlePageChange}
+            innerClass="pager"
+          />
+        </div>
+      ) : null}
     </>
   );
 }
