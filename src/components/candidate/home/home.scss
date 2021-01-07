@@ -1,7 +1,7 @@
 @import "../../../global/global";
 .home {
   width: 100%;
-
+  min-height: 100vh;
   .background {
     height: 25vh;
     background-color: $primary-color-dark;

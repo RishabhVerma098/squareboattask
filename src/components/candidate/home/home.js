@@ -6,12 +6,15 @@ import {
   fetchCandidateAvailableJobs,
   fetchCandidateAppliedJobs,
   showAppliedJobs,
+  applyToJob,
 } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 function Home() {
   const dispatch = useDispatch();
   var token = localStorage.getItem("token");
-
+  const history = useHistory();
   var candidatejobs = useSelector((state) => state.candidateJobReducer);
   var showApplied = useSelector((state) => state.showAppliedJobsReducer);
   var allJobs = useSelector((state) => state.allJobsReducer);
@@ -36,6 +39,12 @@ function Home() {
 
   const seeAlljobs = () => {
     dispatch(showAppliedJobs(false));
+  };
+
+  const apply = (id) => {
+    dispatch(applyToJob(token, id)).then(() => {
+      history.push("/candidate");
+    });
   };
 
   return (
@@ -67,7 +76,16 @@ function Home() {
                     <p>{job.description}</p>
                     <div className="bottom-card">
                       <p>{job.location}</p>
-                      <button>Apply</button>
+                      {showApplied ? (
+                        <button
+                          disabled={true}
+                          style={{ backgroundColor: "gray" }}
+                        >
+                          Apply
+                        </button>
+                      ) : (
+                        <button onClick={() => apply(job.id)}>Apply</button>
+                      )}
                     </div>
                   </div>
                 );
@@ -83,7 +101,6 @@ function Home() {
                   <p>{job.description}</p>
                   <div className="bottom-card">
                     <p>{job.location}</p>
-                    <button>Apply</button>
                   </div>
                 </div>
               );

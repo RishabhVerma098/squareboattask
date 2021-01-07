@@ -14,7 +14,7 @@ export const registerUser = (body) => {
       .post(`${url}/auth/register`, body)
       .then((res) => {
         //dispatch(dummy(res.data.data));
-        console.log(res.data);
+
         localStorage.setItem("name", res.data.data.name);
         localStorage.setItem("email", res.data.data.email);
         localStorage.setItem("id", res.data.data.id);
@@ -64,7 +64,6 @@ export const loginError = (data) => {
 };
 
 export const fetchAllJobs = () => {
-  console.log("it ran");
   return function (dispatch) {
     return axios
       .get(`${url}/jobs`)
@@ -97,7 +96,6 @@ export const fetchCandidateAvailableJobs = (token) => {
 
     return axios(config)
       .then(function (res) {
-        console.log(res.data);
         dispatch(candidateAvailableJob(res.data.data));
       })
       .catch(function (error) {
@@ -126,7 +124,6 @@ export const fetchCandidateAppliedJobs = (token) => {
 
     return axios(config)
       .then(function (res) {
-        console.log(res.data);
         if (res.data.message === "You have not applied to any jobs.") {
           dispatch(candidateAppliedJob([]));
         }
@@ -149,5 +146,26 @@ export const showAppliedJobs = (show) => {
   return {
     type: "SHOW_APPLIED",
     payload: show,
+  };
+};
+
+export const applyToJob = (token, jobId) => {
+  return function (dispatch) {
+    var config = {
+      method: "post",
+      url: `${url}/candidates/jobs`,
+      data: { jobId: jobId },
+      headers: {
+        Authorization: token,
+      },
+    };
+
+    return axios(config)
+      .then(function (res) {
+        console.log(res.data);
+      })
+      .catch(function (error) {
+        console.log(error.response.data);
+      });
   };
 };

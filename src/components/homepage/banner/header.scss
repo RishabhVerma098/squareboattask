@@ -25,6 +25,10 @@
     .applied {
       margin-right: 2rem;
       color: rgb(168, 168, 168);
+      &:hover {
+        color: white;
+        cursor: pointer;
+      }
     }
     .avatar {
       width: 40px;
