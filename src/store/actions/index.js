@@ -54,6 +54,7 @@ export const loginUser = (body) => {
 };
 
 export const fetchAllJobs = () => {
+  console.log("it ran");
   return function (dispatch) {
     return axios
       .get(`${url}/jobs`)
@@ -116,10 +117,27 @@ export const fetchCandidateAppliedJobs = (token) => {
     return axios(config)
       .then(function (res) {
         console.log(res.data);
-        dispatch(candidateAvailableJob(res.data.data));
+        if (res.data.message === "You have not applied to any jobs.") {
+          dispatch(candidateAppliedJob([]));
+        }
+        dispatch(candidateAppliedJob(res.data.data));
       })
       .catch(function (error) {
         console.log(error);
       });
+  };
+};
+
+export const candidateAppliedJob = (data) => {
+  return {
+    type: "CANDIDATE_APPL_JOBS",
+    payload: data,
+  };
+};
+
+export const showAppliedJobs = (show) => {
+  return {
+    type: "SHOW_APPLIED",
+    payload: show,
   };
 };

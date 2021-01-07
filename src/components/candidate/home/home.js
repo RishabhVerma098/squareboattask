@@ -5,16 +5,32 @@ import {
   fetchAllJobs,
   fetchCandidateAvailableJobs,
   fetchCandidateAppliedJobs,
+  candidateAvailableJob,
+  showAppliedJobs,
 } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 function Home() {
   const dispatch = useDispatch();
-  const alljobs = useSelector((state) => state.candidateJobReducer);
+  var token = localStorage.getItem("token");
+
+  var candidatejobs = useSelector((state) => state.candidateJobReducer);
+  var showApplied = useSelector((state) => state.showAppliedJobsReducer);
+
   useEffect(() => {
-    dispatch(fetchCandidateAppliedJobs(localStorage.getItem("token")));
+    dispatch(fetchCandidateAvailableJobs(token));
   }, []);
 
-  //console.log(alljobs);
+  useEffect(() => {
+    if (showApplied) {
+      dispatch(fetchCandidateAppliedJobs(token));
+    } else {
+      dispatch(fetchCandidateAvailableJobs(token));
+    }
+  }, [showApplied]);
+
+  const seeAlljobs = () => {
+    dispatch(showAppliedJobs(false));
+  };
 
   return (
     <div className="home">
@@ -23,24 +39,28 @@ function Home() {
       </div>
       <div className="container">
         <h2>Jobs for you</h2>
-        {/* <div className="nojobs">
-          <p>Your applied jobs will show here</p>
-          <button>See all jobs</button>
-        </div> */}
-        <div className="job-grid">
-          {alljobs?.map((job) => {
-            return (
-              <div className="job-card">
-                <h2>{job.title}</h2>
-                <p>{job.description}</p>
-                <div className="bottom-card">
-                  <p>{job.location}</p>
-                  <button>Apply</button>
+
+        {candidatejobs.length === 0 ? (
+          <div className="nojobs">
+            <p>Your applied jobs will show here</p>
+            <button onClick={() => seeAlljobs()}>See all jobs</button>
+          </div>
+        ) : (
+          <div className="job-grid">
+            {candidatejobs?.map((job) => {
+              return (
+                <div className="job-card">
+                  <h2>{job.title}</h2>
+                  <p>{job.description}</p>
+                  <div className="bottom-card">
+                    <p>{job.location}</p>
+                    <button>Apply</button>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

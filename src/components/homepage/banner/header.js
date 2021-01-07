@@ -1,7 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./header.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { showAppliedJobs } from "../../../store/actions";
 function Header() {
   const [show, setShow] = useState(false);
+
+  const dispatch = useDispatch();
+
+  var sh = useSelector((state) => state.showAppliedJobsReducer);
+
   return (
     <div className="header">
       <h1>MyJobs</h1>
@@ -10,7 +17,13 @@ function Header() {
         <button>Login/Signup</button>
       ) : (
         <div className="right">
-          <p className="applied">Applied Jobs</p>
+          <p
+            className="applied"
+            onClick={() => dispatch(showAppliedJobs(!sh))}
+            style={sh ? { color: "white" } : null}
+          >
+            Applied Jobs
+          </p>
           <div className="avatar">
             <p>{localStorage.getItem("name")[0].toUpperCase()}</p>
           </div>
