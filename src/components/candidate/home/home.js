@@ -45,7 +45,13 @@ function Home() {
         <Header />
       </div>
       <div className="container">
-        <h2>Jobs for you</h2>
+        {token === null ? (
+          <h2>All jobs</h2>
+        ) : showApplied ? (
+          <h2>Jobs you have applied to</h2>
+        ) : (
+          <h2>Jobs for you</h2>
+        )}
 
         {token !== null ? (
           candidatejobs.length === 0 ? (
