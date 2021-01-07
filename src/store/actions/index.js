@@ -233,3 +233,37 @@ export const postajob = (token, body) => {
       });
   };
 };
+
+export const fetchOneJobCandi = (jobId, token) => {
+  return function (dispatch) {
+    var config = {
+      method: "get",
+      url: `${url}/recruiters/jobs/${jobId}/candidates`,
+      headers: {
+        Authorization: token,
+      },
+    };
+
+    return axios(config)
+      .then(function (res) {
+        console.log(res);
+        if (
+          res.data.message === "No candidates have applied for the job posting"
+        ) {
+          dispatch(oneJobCandi([]));
+        } else {
+          dispatch(oneJobCandi(res.data.data));
+        }
+      })
+      .catch(function (error) {
+        console.log(error.response.data);
+      });
+  };
+};
+
+export const oneJobCandi = (data) => {
+  return {
+    type: "ONE_JOB_CANDI",
+    payload: data,
+  };
+};

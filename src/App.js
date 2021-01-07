@@ -3,17 +3,19 @@ import Homepage from "./components/homepage/homepage";
 import CandidateHome from "./components/candidate/home/home";
 import Auth from "./components/auth/auth";
 import Postjob from "./components/recruit/postjob";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 function App() {
   return (
-    <div className="App">
+    <div className="App" id="home">
       <Router forceRefresh={true}>
         <Switch>
           <Route path="/" exact>
             <Homepage />
           </Route>
 
-          <Route path="/candidate">
+          <Route path="/candidate" exact>
             <CandidateHome />
           </Route>
 

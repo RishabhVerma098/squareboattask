@@ -1,7 +1,6 @@
 import React from "react";
 import "./postjob.scss";
 import Header from "../../components/homepage/banner/header";
-
 import { postajob } from "../../store/actions";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
