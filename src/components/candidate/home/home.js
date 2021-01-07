@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./home.scss";
 import Header from "../../../components/homepage/banner/header";
+import Recuit from "./recuithome";
 import {
   fetchAllJobs,
   fetchCandidateAvailableJobs,
@@ -62,7 +63,9 @@ function Home() {
         )}
 
         {token !== null ? (
-          candidatejobs.length === 0 ? (
+          localStorage.getItem("useRole") === "0" ? (
+            <Recuit />
+          ) : candidatejobs.length === 0 ? (
             <div className="nojobs">
               <p>Your applied jobs will show here</p>
               <button onClick={() => seeAlljobs()}>See all jobs</button>

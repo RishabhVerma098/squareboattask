@@ -2,6 +2,7 @@ import React from "react";
 import "./banner.scss";
 import Header from "./header";
 import Photo from "./photo.jpg";
+import { Link } from "react-router-dom";
 function Banner() {
   return (
     <div className="banner">
@@ -9,7 +10,9 @@ function Banner() {
       <div className="text">
         <h1>Welcome to</h1>
         <h1>MyJobs</h1>
-        <button>Get Started</button>
+        <Link to="/candidate">
+          <button>Get Started</button>
+        </Link>
       </div>
       <img src={Photo} alt="im"></img>
     </div>

@@ -126,8 +126,10 @@ export const fetchCandidateAppliedJobs = (token) => {
       .then(function (res) {
         if (res.data.message === "You have not applied to any jobs.") {
           dispatch(candidateAppliedJob([]));
+        } else {
+          //MADE A CHANGE HERE
+          dispatch(candidateAppliedJob(res.data.data));
         }
-        dispatch(candidateAppliedJob(res.data.data));
       })
       .catch(function (error) {
         console.log(error);
@@ -167,5 +169,38 @@ export const applyToJob = (token, jobId) => {
       .catch(function (error) {
         console.log(error.response.data);
       });
+  };
+};
+
+export const fetchRecuitersJob = (token) => {
+  console.log("recuot ran");
+  return function (dispatch) {
+    var config = {
+      method: "get",
+      url: `${url}/recruiters/jobs`,
+      headers: {
+        Authorization: token,
+      },
+    };
+
+    return axios(config)
+      .then(function (res) {
+        console.log(res.data);
+        if (res.data.message === "No jobs posted") {
+          dispatch(recuitersJob([]));
+        } else {
+          dispatch(recuitersJob(res.data));
+        }
+      })
+      .catch(function (error) {
+        console.log(error.response.data);
+      });
+  };
+};
+
+export const recuitersJob = (data) => {
+  return {
+    type: "RECUITER_JOB",
+    payload: data,
   };
 };

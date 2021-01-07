@@ -22,13 +22,17 @@ function Header() {
         </Link>
       ) : (
         <div className="right">
-          <p
-            className="applied"
-            onClick={() => dispatch(showAppliedJobs(!sh))}
-            style={sh ? { color: "white" } : null}
-          >
-            Applied Jobs
-          </p>
+          {localStorage.getItem("useRole") === "0" ? (
+            <p style={{ color: "white", marginRight: "1rem" }}>Post a job</p>
+          ) : (
+            <p
+              className="applied"
+              onClick={() => dispatch(showAppliedJobs(!sh))}
+              style={sh ? { color: "white" } : null}
+            >
+              Applied Jobs
+            </p>
+          )}
           <div className="avatar">
             <p>{localStorage.getItem("name")[0].toUpperCase()}</p>
           </div>
