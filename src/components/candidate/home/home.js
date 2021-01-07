@@ -5,7 +5,6 @@ import {
   fetchAllJobs,
   fetchCandidateAvailableJobs,
   fetchCandidateAppliedJobs,
-  candidateAvailableJob,
   showAppliedJobs,
 } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
