@@ -173,7 +173,6 @@ export const applyToJob = (token, jobId) => {
 };
 
 export const fetchRecuitersJob = (token) => {
-  console.log("recuot ran");
   return function (dispatch) {
     var config = {
       method: "get",
@@ -185,11 +184,10 @@ export const fetchRecuitersJob = (token) => {
 
     return axios(config)
       .then(function (res) {
-        console.log(res.data);
         if (res.data.message === "No jobs posted") {
           dispatch(recuitersJob([]));
         } else {
-          dispatch(recuitersJob(res.data));
+          dispatch(recuitersJob(res.data.data.data));
         }
       })
       .catch(function (error) {
@@ -202,5 +200,36 @@ export const recuitersJob = (data) => {
   return {
     type: "RECUITER_JOB",
     payload: data,
+  };
+};
+
+export const postajob = (token, body) => {
+  console.log(token, body);
+  return function (dispatch) {
+    var config = {
+      method: "post",
+      url: `${url}/jobs`,
+      data: {
+        title: body.title,
+        description: body.description,
+        location: body.location,
+      },
+      headers: {
+        Authorization: token,
+      },
+    };
+
+    return axios(config)
+      .then(function (res) {
+        console.log(res.data);
+        // if (res.data.message === "No jobs posted") {
+        //   dispatch(recuitersJob([]));
+        // } else {
+        //   dispatch(recuitersJob(res.data.data.data));
+        // }
+      })
+      .catch(function (error) {
+        console.log(error.response.data);
+      });
   };
 };

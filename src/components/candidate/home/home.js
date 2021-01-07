@@ -58,6 +58,8 @@ function Home() {
           <h2>All jobs</h2>
         ) : showApplied ? (
           <h2>Jobs you have applied to</h2>
+        ) : localStorage.getItem("useRole") === "0" ? (
+          <h2>Jobs posted by you</h2>
         ) : (
           <h2>Jobs for you</h2>
         )}

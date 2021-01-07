@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./recuit.scss";
 import { fetchRecuitersJob } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 function Recruit() {
   const dispatch = useDispatch();
   var token = localStorage.getItem("token");
@@ -17,7 +18,9 @@ function Recruit() {
       {rjobs.length === 0 ? (
         <div className="nojobs">
           <p>No jobs posted by you</p>
-          <button>Post a job</button>
+          <Link to="/postjob">
+            <button>Post a job</button>
+          </Link>
         </div>
       ) : (
         <div className="job-grid">
@@ -28,7 +31,7 @@ function Recruit() {
                 <p>{job.description}</p>
                 <div className="bottom-card">
                   <p>{job.location}</p>
-                  <button>View Candidates</button>
+                  <button>View</button>
                 </div>
               </div>
             );

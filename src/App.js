@@ -17,6 +17,10 @@ function App() {
             <CandidateHome />
           </Route>
 
+          <Route path="/postjob">
+            <Postjob />
+          </Route>
+
           <Route path="/auth/:type" component={Auth} />
         </Switch>
       </Router>

@@ -23,7 +23,9 @@ function Header() {
       ) : (
         <div className="right">
           {localStorage.getItem("useRole") === "0" ? (
-            <p style={{ color: "white", marginRight: "1rem" }}>Post a job</p>
+            <Link to="/postjob">
+              <p style={{ color: "white", marginRight: "1rem" }}>Post a job</p>
+            </Link>
           ) : (
             <p
               className="applied"
