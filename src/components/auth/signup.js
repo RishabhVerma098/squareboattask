@@ -25,6 +25,8 @@ function Signup() {
         errors.fullname = "Full name is required";
       } else if (values.fullname.length < 6) {
         errors.fullname = "Name should be of atleast 6 char";
+      } else if (/\s/i.test(values.fullname)) {
+        errors.fullname = "No special char , including space";
       }
 
       if (!values.email) {
