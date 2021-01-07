@@ -9,6 +9,7 @@
   margin: auto;
   padding-top: 20px;
   padding-bottom: 1rem;
+  position: relative;
   h1 {
     color: white;
   }
@@ -35,6 +36,11 @@
       p {
         margin-bottom: 0.7rem;
       }
+    }
+
+    .logout {
+      background-color: white;
+      color: $primary-color;
     }
   }
 }
