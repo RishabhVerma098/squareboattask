@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/squareboattask/static/css/main.5144e103.chunk.css",
+    "main.js": "/squareboattask/static/js/main.5fe67e22.chunk.js",
+    "main.js.map": "/squareboattask/static/js/main.5fe67e22.chunk.js.map",
+    "runtime-main.js": "/squareboattask/static/js/runtime-main.f084ca52.js",
+    "runtime-main.js.map": "/squareboattask/static/js/runtime-main.f084ca52.js.map",
+    "static/js/2.78a100d4.chunk.js": "/squareboattask/static/js/2.78a100d4.chunk.js",
+    "static/js/2.78a100d4.chunk.js.map": "/squareboattask/static/js/2.78a100d4.chunk.js.map",
+    "index.html": "/squareboattask/index.html",
+    "static/css/main.5144e103.chunk.css.map": "/squareboattask/static/css/main.5144e103.chunk.css.map",
+    "static/js/2.78a100d4.chunk.js.LICENSE.txt": "/squareboattask/static/js/2.78a100d4.chunk.js.LICENSE.txt",
+    "static/media/photo.eda9cb72.jpg": "/squareboattask/static/media/photo.eda9cb72.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f084ca52.js",
+    "static/js/2.78a100d4.chunk.js",
+    "static/css/main.5144e103.chunk.css",
+    "static/js/main.5fe67e22.chunk.js"
+  ]
+}
