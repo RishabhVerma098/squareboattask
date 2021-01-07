@@ -12,7 +12,7 @@ function Auth() {
         <Header />
       </div>
       <div className="form">
-        <Login />
+        <Signup />
       </div>
     </div>
   );

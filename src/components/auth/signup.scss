@@ -1,5 +1,15 @@
 @import "../../global/global";
 @import "./auth.scss";
+.role {
+  margin-top: 1.5rem;
+  button {
+    @include button-style(0);
+  }
+  .candi {
+    margin-left: 1rem;
+  }
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -16,12 +26,10 @@ form {
     align-self: center;
     margin-top: 2rem;
   }
-
-  .role {
-    margin-top: -1rem;
-    .candi {
-      margin-left: 1rem;
-    }
+  .error {
+    color: red;
+    font-size: 0.7rem;
+    margin-top: 0.2rem;
   }
 
   .passwords-row {

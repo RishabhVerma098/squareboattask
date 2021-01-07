@@ -6,7 +6,7 @@ import Postjob from "./components/recruit/postjob";
 function App() {
   return (
     <div className="App">
-      <CandidateHome />
+      <Auth />
     </div>
   );
 }
