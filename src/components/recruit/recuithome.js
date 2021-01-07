@@ -135,7 +135,7 @@ function Recruit() {
         </div>
       </Modal>
 
-      {rjobs?.metadata?.limit > 20 ? (
+      {rjobs?.metadata?.count > 20 ? (
         <div className="page">
           <Pagination
             activePage={activePage}

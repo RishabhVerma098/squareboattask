@@ -65,7 +65,7 @@ function Home() {
     }
   };
 
-  console.log(candidatejobs);
+  console.log(candidatejobs, "jons");
 
   return (
     <div className="home">
@@ -160,22 +160,25 @@ function Home() {
       </div>
       {token !== null && localStorage.getItem("useRole") === "0" ? null : (
         <div className="page">
-          <Pagination
-            activePage={activePage}
-            itemsCountPerPage={
-              token === null
-                ? allJobs?.metadata?.limit
-                : candidatejobs?.metadata?.limit
-            }
-            totalItemsCount={
-              token === null
-                ? allJobs?.metadata?.count
-                : candidatejobs?.metadata?.count
-            }
-            pageRangeDisplayed={5}
-            onChange={handlePageChange}
-            innerClass="pager"
-          />
+          {token === null ? (
+            <Pagination
+              activePage={activePage}
+              itemsCountPerPage={allJobs?.metadata?.limit}
+              totalItemsCount={allJobs?.metadata?.count}
+              pageRangeDisplayed={5}
+              onChange={handlePageChange}
+              innerClass="pager"
+            />
+          ) : candidatejobs?.metadata?.count > 20 ? (
+            <Pagination
+              activePage={activePage}
+              itemsCountPerPage={candidatejobs?.metadata?.limit}
+              totalItemsCount={candidatejobs?.metadata?.count}
+              pageRangeDisplayed={5}
+              onChange={handlePageChange}
+              innerClass="pager"
+            />
+          ) : null}
         </div>
       )}
     </div>
