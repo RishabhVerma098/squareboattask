@@ -64,7 +64,6 @@ function Home() {
     }
   };
 
-  console.log(activePage);
   return (
     <div className="home">
       <div className="background">
@@ -130,24 +129,26 @@ function Home() {
           </div>
         )}
       </div>
-      <div className="page">
-        <Pagination
-          activePage={activePage}
-          itemsCountPerPage={
-            token === null
-              ? allJobs?.metadata?.limit
-              : candidatejobs?.metadata?.limit
-          }
-          totalItemsCount={
-            token === null
-              ? allJobs?.metadata?.count
-              : candidatejobs?.metadata?.count
-          }
-          pageRangeDisplayed={5}
-          onChange={handlePageChange}
-          innerClass="pager"
-        />
-      </div>
+      {token !== null && localStorage.getItem("useRole") === "0" ? null : (
+        <div className="page">
+          <Pagination
+            activePage={activePage}
+            itemsCountPerPage={
+              token === null
+                ? allJobs?.metadata?.limit
+                : candidatejobs?.metadata?.limit
+            }
+            totalItemsCount={
+              token === null
+                ? allJobs?.metadata?.count
+                : candidatejobs?.metadata?.count
+            }
+            pageRangeDisplayed={5}
+            onChange={handlePageChange}
+            innerClass="pager"
+          />
+        </div>
+      )}
     </div>
   );
 }

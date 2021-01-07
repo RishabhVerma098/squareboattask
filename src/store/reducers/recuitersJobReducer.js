@@ -1,7 +1,7 @@
-const recuitersJobReducer = (state = [], action) => {
+const recuitersJobReducer = (state = {}, action) => {
   switch (action.type) {
     case "RECUITER_JOB":
-      return [...action.payload];
+      return { ...action.payload };
     default:
       return state;
   }

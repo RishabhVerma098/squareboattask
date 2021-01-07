@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import { fetchOneJobCandi } from "../../store/actions";
+import Pagination from "react-js-pagination";
 import "./recuit.scss";
 const customStyles = {
   content: {
@@ -22,7 +23,7 @@ function Recruit() {
   var token = localStorage.getItem("token");
 
   useEffect(() => {
-    dispatch(fetchRecuitersJob(token));
+    dispatch(fetchRecuitersJob(token, 1));
   }, []);
 
   var rjobs = useSelector((state) => state.recuitersJobReducer);
@@ -53,6 +54,13 @@ function Recruit() {
     setCount(c);
   }, [onejob]);
 
+  const [activePage, setActivePage] = useState(1);
+
+  const handlePageChange = (pageNumber) => {
+    setActivePage(pageNumber);
+    dispatch(fetchRecuitersJob(token, pageNumber));
+  };
+
   return (
     <>
       {rjobs.length === 0 ? (
@@ -64,7 +72,7 @@ function Recruit() {
         </div>
       ) : (
         <div className="job-grid">
-          {rjobs?.map((job) => {
+          {rjobs?.data?.map((job) => {
             return (
               <div className="job-card">
                 <h2>{job.title}</h2>
@@ -111,6 +119,16 @@ function Recruit() {
           })}
         </div>
       </Modal>
+      <div className="page">
+        <Pagination
+          activePage={activePage}
+          itemsCountPerPage={rjobs?.metadata?.limit}
+          totalItemsCount={rjobs?.metadata?.count}
+          pageRangeDisplayed={5}
+          onChange={handlePageChange}
+          innerClass="pager"
+        />
+      </div>
     </>
   );
 }
