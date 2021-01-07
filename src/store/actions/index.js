@@ -63,12 +63,12 @@ export const loginError = (data) => {
   };
 };
 
-export const fetchAllJobs = () => {
+export const fetchAllJobs = (pagenum) => {
   return function (dispatch) {
     return axios
-      .get(`${url}/jobs`)
+      .get(`${url}/jobs?page=${pagenum}`)
       .then((res) => {
-        dispatch(alljobs(res.data.data));
+        dispatch(alljobs(res.data));
       })
       .catch(function (error) {
         console.log(error.response.data);
@@ -84,11 +84,11 @@ export const alljobs = (data) => {
   };
 };
 
-export const fetchCandidateAvailableJobs = (token) => {
+export const fetchCandidateAvailableJobs = (token, pagenum) => {
   return function (dispatch) {
     var config = {
       method: "get",
-      url: `${url}/candidates/jobs`,
+      url: `${url}/candidates/jobs?page=${pagenum}`,
       headers: {
         Authorization: token,
       },
@@ -96,7 +96,7 @@ export const fetchCandidateAvailableJobs = (token) => {
 
     return axios(config)
       .then(function (res) {
-        dispatch(candidateAvailableJob(res.data.data));
+        dispatch(candidateAvailableJob(res.data));
       })
       .catch(function (error) {
         console.log(error);
@@ -112,11 +112,11 @@ export const candidateAvailableJob = (data) => {
   };
 };
 
-export const fetchCandidateAppliedJobs = (token) => {
+export const fetchCandidateAppliedJobs = (token, pagenum) => {
   return function (dispatch) {
     var config = {
       method: "get",
-      url: `${url}/candidates/jobs/applied`,
+      url: `${url}/candidates/jobs/applied?page=${pagenum}`,
       headers: {
         Authorization: token,
       },
@@ -128,7 +128,7 @@ export const fetchCandidateAppliedJobs = (token) => {
           dispatch(candidateAppliedJob([]));
         } else {
           //MADE A CHANGE HERE
-          dispatch(candidateAppliedJob(res.data.data));
+          dispatch(candidateAppliedJob(res.data));
         }
       })
       .catch(function (error) {

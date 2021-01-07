@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./home.scss";
 import Header from "../../../components/homepage/banner/header";
 import Recuit from "../../recruit/recuithome";
@@ -11,7 +11,7 @@ import {
 } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import Pagination from "react-js-pagination";
 function Home() {
   const dispatch = useDispatch();
   var token = localStorage.getItem("token");
@@ -21,20 +21,20 @@ function Home() {
   var allJobs = useSelector((state) => state.allJobsReducer);
 
   useEffect(() => {
-    dispatch(fetchCandidateAvailableJobs(token));
+    dispatch(fetchCandidateAvailableJobs(token, 1));
   }, []);
 
   useEffect(() => {
     if (showApplied) {
-      dispatch(fetchCandidateAppliedJobs(token));
+      dispatch(fetchCandidateAppliedJobs(token, 1));
     } else {
-      dispatch(fetchCandidateAvailableJobs(token));
+      dispatch(fetchCandidateAvailableJobs(token, 1));
     }
   }, [showApplied]);
 
   useEffect(() => {
     if (token === null) {
-      dispatch(fetchAllJobs());
+      dispatch(fetchAllJobs(1));
     }
   }, [token]);
 
@@ -48,6 +48,23 @@ function Home() {
     });
   };
 
+  const [activePage, setActivePage] = useState(1);
+
+  const handlePageChange = (pageNumber) => {
+    // console.log(`active page is ${pageNumber}`);
+    // this.setState({activePage: pageNumber});
+    setActivePage(pageNumber);
+
+    if (token === null) {
+      dispatch(fetchAllJobs(pageNumber));
+    } else if (!showApplied) {
+      dispatch(fetchCandidateAvailableJobs(token, pageNumber));
+    } else {
+      dispatch(fetchCandidateAppliedJobs(token, pageNumber));
+    }
+  };
+
+  console.log(activePage);
   return (
     <div className="home">
       <div className="background">
@@ -67,14 +84,14 @@ function Home() {
         {token !== null ? (
           localStorage.getItem("useRole") === "0" ? (
             <Recuit />
-          ) : candidatejobs.length === 0 ? (
+          ) : Object.keys(candidatejobs).length === 0 ? (
             <div className="nojobs">
               <p>Your applied jobs will show here</p>
               <button onClick={() => seeAlljobs()}>See all jobs</button>
             </div>
           ) : (
             <div className="job-grid">
-              {candidatejobs?.map((job) => {
+              {candidatejobs?.data?.map((job) => {
                 return (
                   <div className="job-card">
                     <h2>{job.title}</h2>
@@ -99,7 +116,7 @@ function Home() {
           )
         ) : (
           <div className="job-grid">
-            {allJobs?.map((job) => {
+            {allJobs?.data?.map((job) => {
               return (
                 <div className="job-card">
                   <h2>{job.title}</h2>
@@ -112,6 +129,24 @@ function Home() {
             })}
           </div>
         )}
+      </div>
+      <div className="page">
+        <Pagination
+          activePage={activePage}
+          itemsCountPerPage={
+            token === null
+              ? allJobs?.metadata?.limit
+              : candidatejobs?.metadata?.limit
+          }
+          totalItemsCount={
+            token === null
+              ? allJobs?.metadata?.count
+              : candidatejobs?.metadata?.count
+          }
+          pageRangeDisplayed={5}
+          onChange={handlePageChange}
+          innerClass="pager"
+        />
       </div>
     </div>
   );

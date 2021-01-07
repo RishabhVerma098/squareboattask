@@ -7,6 +7,30 @@
     background-color: $primary-color-dark;
   }
 
+  .page {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+    .pager {
+      display: flex;
+      align-items: center;
+      width: 200px;
+      justify-content: space-evenly;
+
+      li {
+        background-color: white;
+        border: 1px solid $primary-color;
+        border-radius: 5px;
+        padding: 0.5rem 1rem 0.5rem 1rem;
+        margin-left: 1rem;
+        a {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
   .container {
     // position: absolute;
     // top: 30%;

@@ -1,9 +1,9 @@
-const candidateJobReducer = (state = [], action) => {
+const candidateJobReducer = (state = {}, action) => {
   switch (action.type) {
     case "CANDIDATE_AVAIL_JOBS":
-      return [...action.payload];
+      return { ...action.payload };
     case "CANDIDATE_APPL_JOBS":
-      return [...action.payload];
+      return { ...action.payload };
     default:
       return state;
   }
