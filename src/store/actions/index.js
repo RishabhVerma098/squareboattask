@@ -40,7 +40,6 @@ export const loginUser = (body) => {
     return axios
       .post(`${url}/auth/login`, body)
       .then((res) => {
-        console.log(res.data);
         localStorage.setItem("name", res.data.data.name);
         localStorage.setItem("email", res.data.data.email);
         localStorage.setItem("id", res.data.data.id);
@@ -48,8 +47,19 @@ export const loginUser = (body) => {
         localStorage.setItem("useRole", res.data.data.userRole);
       })
       .catch(function (error) {
-        console.log(error.response.data);
+        if (error.response.data.code === 401) {
+          dispatch(loginError(error.response.data.message));
+        } else {
+          dispatch(loginError(null));
+        }
       });
+  };
+};
+
+export const loginError = (data) => {
+  return {
+    type: "LOGIN_ERROR",
+    payload: data,
   };
 };
 

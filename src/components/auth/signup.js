@@ -3,10 +3,11 @@ import "./signup.scss";
 import { registerUser } from "../../store/actions";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 function Signup() {
   const [role, setRole] = useState(1);
   const dispatch = useDispatch();
+  const history = useHistory();
   const formik = useFormik({
     initialValues: {
       fullname: "",
@@ -63,7 +64,9 @@ function Signup() {
         name: values.fullname,
         skills: values.skill,
       })
-    );
+    ).then(() => {
+      history.push("/candidate");
+    });
   };
 
   return (
@@ -159,7 +162,7 @@ function Signup() {
         {formik.touched.skill && formik.errors.skill ? (
           <div className="error">{formik.errors.skill}</div>
         ) : null}
-        <button type="submit">Login</button>
+        <button type="submit">Signup</button>
       </form>
       <p>
         Have an account ?{" "}

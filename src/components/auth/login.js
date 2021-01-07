@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./login.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/actions";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 function Login() {
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const le = useSelector((state) => state.loginErrorReducer);
 
   const formik = useFormik({
     initialValues: {
@@ -39,11 +42,17 @@ function Login() {
         email: values.email,
         password: values.password,
       })
-    );
+    ).then(() => {
+      history.push("/candidate");
+    });
   };
+
   return (
     <>
       <h2>Login</h2>
+      {/* <p style={{ color: "red", fontSize: "0.7rem" }}>
+        {loginError ? le : null}
+      </p> */}
       <form onSubmit={formik.handleSubmit}>
         <label className="email">Email Address</label>
         <input

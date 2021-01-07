@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./header.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { showAppliedJobs } from "../../../store/actions";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 function Header() {
   const [show, setShow] = useState(false);
-
+  const history = useHistory();
   const dispatch = useDispatch();
 
   var sh = useSelector((state) => state.showAppliedJobsReducer);
@@ -41,6 +41,7 @@ function Header() {
                 className="logout"
                 onClick={() => {
                   localStorage.clear();
+                  history.push("/candidate");
                 }}
               >
                 Logout
