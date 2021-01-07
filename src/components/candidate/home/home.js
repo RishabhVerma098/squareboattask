@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./home.scss";
 import Header from "../../../components/homepage/banner/header";
-import Recuit from "./recuithome";
+import Recuit from "../../recruit/recuithome";
 import {
   fetchAllJobs,
   fetchCandidateAvailableJobs,

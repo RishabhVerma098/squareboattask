@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import "./recuit.scss";
-import { fetchRecuitersJob } from "../../../store/actions";
+import { fetchRecuitersJob } from "../../store/actions/";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 function Recruit() {
